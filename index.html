@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isabella Jiwon Choi</title>
+
+    <!-- Import Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^3.0/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Montserrat Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Lato Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <div class="nav">
+        <div class="nav-item">
+            <a href="./">Home</a>
+        </div>
+        <div class="nav-item">
+            <a href="./about_me.html">About</a>
+        </div>
+        <!--<div class="nav-item">-->
+        <!--    <a href="">Resume</a>-->
+        <!--</div>-->
+        <div class="nav-item">
+            <a href="./contact.html">Contact</a>
+        </div>
+    </div>
+    
+    <div>
+        <h1 style="text-align:center; padding-top:20px;">Isabella Jiwon Choi</h1>
+        <!--<div id="bio">-->
+        <!--    Illustrator-->
+        <!--</div>-->
+    </div>
+    
+    <!--<h2 style="text-align:center;">My Work</h2>-->
+    
+    <div class="gallery" style="padding-top:50px;">
+        
+        <!-- Row 1 -->
+        
+        <div class="imageWrapper" onclick="nkOpenImageViewer('images/MIN_1460.jpg', 0)" style="width:calc(400px - 20px);">
+            <img src="images/MIN_1460.jpg" alt="Holding Hands Drawing" />      
+            <div class="title">Intertwined Connections</div>
+            <div class="caption">19.6 x 33 (inches)</div>
+            <div class="caption">Black & white conté pencils on kent paper</div>
+        </div>
+        
+        <div class="imageWrapper" onclick="nkOpenImageViewer('images/MIN_1485.jpg', 1)" style="width:calc(300px - 20px);">
+            <img src="images/MIN_1485.jpg" alt="Holding Hands Drawing" />      
+            <div class="title">Izzy’s Cafe</div>
+            <div class="caption">15.5 x 15.5 (inches)</div>
+            <div class="caption">Acrylic paints, watercolor, and colored pencils on paper attached to thick cardstock board.</div>
+        </div>
+        
+        <div class="imageWrapper" onclick="nkOpenImageViewer('images/MIN_1622.jpg', 2)" style="width:calc(300px - 20px);">
+            <img src="images/MIN_1622.jpg" alt="Holding Hands Drawing" />    
+            <div class="title">Childhood Bliss</div>
+           <div class="caption">17.12 x 12.2 (inches)</div>
+           <div class="caption">Acrylic paint, colored pencils, wire, tracing paper, ink pen on paper, wood sticks for frame.</div>
+        </div>
+        
+    </div>
+    
+    <div class="gallery" style="padding-top:10px; padding-bottom:50px;">
+        <div class="imageWrapper" onclick="nkOpenImageViewer('images/MIN_1640.jpg', 3)" style="width:calc(350px - 20px);">
+            <img src="images/MIN_1640.jpg" alt="Holding Hands Drawing" />    
+            <div class="title">Miniature Rooms of Memories</div>
+            <div class="caption">8 x 8 x 4 (inches)</div>
+            <div class="caption">Watercolor, colored pencils, embroidery thread, acrylic paints, air-dry clay, 한지 (Korean Paper), artificial modeling grass pieces on thick cardstock paper.</div>
+        </div>
+        
+        <div class="imageWrapper" onclick="nkOpenImageViewer('images/MIN_1650.jpg', 4)" style="width:calc(325px - 20px);">
+            <img src="images/MIN_1650.jpg" alt="Holding Hands Drawing"/>     
+            <div class="title">Baking & the Beach</div>
+            <div class="caption">23.5 x 19.5 (inches)</div>
+            <div class="caption">Acrylic paint, modeling paste, gel medium, sprinkles, glass tiles on canvas.</div>
+        </div>
+        
+        <div class="imageWrapper" onclick="nkOpenImageViewer('images/MIN_1658.jpg', 5)" style="width:calc(325px - 20px);">
+            <img src="images/MIN_1658.jpg" alt="Holding Hands Drawing" />    
+            <div class="title">STUDIO Pov</div>
+            <div class="caption">35.6 x 25.5 (inches)</div>
+            <div class="caption">Acrylic paint on canvas, silver paint marker, embroidery thread.</div>
+        </div>
+    </div>
+    
+    <!-- Image Viewer -->
+    <!-- 
+    
+        Logic:
+        
+        There will be a main thumbnail, this will have the onclick event with an id.
+        
+        Onclick, the modal wil open and display the main image.
+        
+        Underneath this main image there will be a row of the other images, which I will store in a global array
+        
+        Onclick of these other images, it will simply populate the main image view with it's url.
+    
+    
+    -->
+    <div id="imageViewer">
+        <div id="imageViewerInner">
+            <div id="mainImageContainer"></div>
+            <div id="thumbnails"></div>
+        </div>
+        <div id="imageViewerExit" onclick="nkCloseImageViewer();">
+            Close
+        </div>
+    </div>
+    
+    <script>
+    
+        //images
+        const thumbnails = [
+            ["images/MIN_1460.jpg"],
+            ["images/MIN_1485.jpg", "images/MIN_1486.jpg"],
+            ["images/MIN_1622.jpg", "images/MIN_1623.jpg", "images/MIN_1628.jpg", "images/MIN_1633.jpg"],
+            ["images/MIN_1640.jpg", "images/MIN_1645.jpg", "images/MIN_1647.jpg"],
+            ["images/MIN_1650.jpg", "images/MIN_1653.jpg", "images/MIN_1655.jpg"],
+            ["images/MIN_1658.jpg", "images/MIN_1661.jpg", "images/MIN_1663.jpg"]
+        ]
+        
+        console.log(thumbnails);
+        
+        //opens the image viewer with the initial image (main thumbnail)
+        //also specifies the id so I know which array of other images to use
+        function nkOpenImageViewer(url, index){
+            
+            document.body.style.overflow = "hidden";
+            document.body.style.position = "fixed"
+            
+            console.log("url:", url);
+            console.log("id:", index);
+            
+            //show the view
+            document.getElementById("imageViewer").style.visibility = "visible";
+        
+            //init the main image
+            document.getElementById("mainImageContainer").style.backgroundImage = "url('" + url + "')";
+            
+            //populate the thumbnail row
+            const thumbnailUrls = thumbnails[index];
+            console.log(thumbnailUrls);
+            
+            //thumbnails to be injected
+            var html = "";
+            
+            for(i = 0; i < thumbnailUrls.length; i++){
+                html += "<div class='thumbnailWrapper' onclick='nkInjectImage(" + '"' + thumbnailUrls[i] + '"' + ")'>";
+                html += "<img class='thumbnail' src='" + thumbnailUrls[i] + "'/>"
+                html += "</div>";
+            }
+            
+            document.getElementById("thumbnails").innerHTML = html;
+        
+            
+        }
+        
+        function nkCloseImageViewer(){
+            document.body.style.overflow = "auto";
+            document.body.style.position = "relative";
+            document.getElementById("imageViewer").style.visibility = "hidden";
+        }
+        
+        //injects the main image with whatever url is specified
+        function nkInjectImage(url){
+            document.getElementById("mainImageContainer").style.backgroundImage = "url('" + url + "')";
+        }
+        
+        document.getElementById('imageViewer').addEventListener('click', function(event) {
+            // Check if the event's target is the same as the currentTarget
+            if (event.target === event.currentTarget) {
+                nkCloseImageViewer(); // Assuming nkCloseImageViewer is a function that closes the viewer
+            }
+        });
+        
+    </script>
+    
+</body>
+</html>
